@@ -1,6 +1,6 @@
 <script lang="ts">
   export let name: string;
-  console.log("__buildVersion");
+  console.log("Application version __buildVersion using ENDPOINT process.env.APP_ENDPOINT");
 
   import Card from "./Card.svelte";
   import CardContainer from "./CardContainer.svelte";

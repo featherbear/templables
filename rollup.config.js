@@ -8,6 +8,8 @@ import typescript from '@rollup/plugin-typescript'
 import replace from '@rollup/plugin-replace'
 import css from 'rollup-plugin-css-only'
 import { version as appVersion } from './package.json'
+import dotenv from 'dotenv'
+dotenv.config()
 
 const production = !process.env.ROLLUP_WATCH
 
@@ -48,7 +50,8 @@ export default {
     replace({
       values: {
         __buildDate: () => JSON.stringify(new Date()),
-        __buildVersion: appVersion
+        __buildVersion: appVersion,
+        'process.env.APP_ENDPOINT': process.env.APP_ENDPOINT || 'local'
       },
       preventAssignment: true
     }),
