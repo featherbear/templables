@@ -1,5 +1,4 @@
 <script lang="ts">
-  export let name: string;
   console.log(
     `Application version __buildVersion using ENDPOINT ${process.env.APP_ENDPOINT}`
   );
@@ -10,7 +9,7 @@
 
   const getData = async (): Promise<{ templates: TemplateData[] }> => {
     if (process.env.APP_ENDPOINT !== "local") {
-      return fetch("stubFormData.json").then((r) => r.json());
+      return fetch(process.env.APP_ENDPOINT + "/stubFormData.json").then((r) => r.json());
     }
 
     return {
