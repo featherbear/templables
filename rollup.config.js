@@ -51,7 +51,7 @@ export default {
       values: {
         __buildDate: () => JSON.stringify(new Date()),
         __buildVersion: appVersion,
-        'process.env.APP_ENDPOINT': process.env.APP_ENDPOINT || 'local'
+        'process.env.APP_ENDPOINT': JSON.stringify(process.env.APP_ENDPOINT || 'local')
       },
       preventAssignment: true
     }),

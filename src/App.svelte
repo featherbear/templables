@@ -1,14 +1,25 @@
 <script lang="ts">
   export let name: string;
-  console.log("Application version __buildVersion using ENDPOINT process.env.APP_ENDPOINT");
+  console.log(
+    `Application version __buildVersion using ENDPOINT ${process.env.APP_ENDPOINT}`
+  );
 
   import Card from "./Card.svelte";
   import CardContainer from "./CardContainer.svelte";
   import type { TemplateData } from "./types/TemplateData";
 
-  const handleFetchResponse = async (
-    fetcher
-  ): Promise<{ templates: TemplateData[] }> => fetcher.then((r) => r.json());
+  const getData = async (): Promise<{ templates: TemplateData[] }> => {
+    if (process.env.APP_ENDPOINT !== "local") {
+      return fetch("stubFormData.json").then((r) => r.json());
+    }
+
+    return {
+      templates: [
+        { title: "Local 1", description: "" },
+        { title: "Local 2", description: "" },
+      ],
+    };
+  };
 </script>
 
 <div class="container">
@@ -17,7 +28,7 @@
   </header>
 
   <main>
-    {#await handleFetchResponse(fetch("stubFormData.json"))}
+    {#await getData()}
       TODO: Loading spinner
     {:then json}
       <CardContainer>
