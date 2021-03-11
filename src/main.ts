@@ -5,3 +5,11 @@ const app = new App({
 });
 
 export default app;
+
+// fetch("/stubFormData.json").then((r) => r.json()).then((v => {
+// 	return v
+// }): { templates: TemplateData[] }
+
+
+let a = 
+a()

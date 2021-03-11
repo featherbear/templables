@@ -14,22 +14,26 @@
 <style lang="scss">
   card {
     h2 {
-      color: #555;
+      color: #222;
     }
     p {
-      color: #888;
+      color: #666;
     }
 
     padding: 0 5px 5px 10px;
 
-    border: 1px solid #555;
+    border: 1px solid #ccc;
     border-radius: 5px;
-
-    // box-shadow: 17px 17px 28px 0px rgba(0,0,0,0.33);
 
     text-align: center;
 
     cursor: pointer;
     user-select: none;
+
+    background-color: #fff;
+    transition: background-color 0.2s;
+    &:hover {
+      background-color: #eee;
+    }
   }
 </style>
