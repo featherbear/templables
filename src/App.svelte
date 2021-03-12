@@ -1,4 +1,6 @@
 <script lang="ts">
+  const isAppRemote = process.env.APP_ENDPOINT !== "local";
+
   console.log(
     `Application version __buildVersion using ENDPOINT ${process.env.APP_ENDPOINT}`
   );
@@ -7,9 +9,16 @@
   import CardContainer from "./CardContainer.svelte";
   import type { TemplateData } from "./types/TemplateData";
 
+  if (isAppRemote) {
+    fetch(process.env.APP_ENDPOINT + "/auth", {
+      headers: { Authorization: "Basic ________" },
+    }).then((r) => r.json());
+  }
   const getData = async (): Promise<{ templates: TemplateData[] }> => {
-    if (process.env.APP_ENDPOINT !== "local") {
-      return fetch(process.env.APP_ENDPOINT + "/stubFormData.json").then((r) => r.json());
+    if (isAppRemote) {
+      return fetch(process.env.APP_ENDPOINT + "/templates").then((r) =>
+        r.json()
+      );
     }
 
     return {
@@ -24,6 +33,10 @@
 <div class="container">
   <header>
     <h1>Templables</h1>
+    {#if isAppRemote}
+      <a>Login</a>
+      <a>Register</a>
+    {/if}
   </header>
 
   <main>
@@ -76,6 +89,8 @@
     footer {
       padding: 0.5em;
       background-color: #ff8a62;
+
+      user-select: none;
     }
   }
 </style>
