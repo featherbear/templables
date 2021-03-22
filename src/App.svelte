@@ -7,19 +7,22 @@
 
   import Card from "./Card.svelte";
   import CardContainer from "./CardContainer.svelte";
-  import type { TemplateData } from "./types/TemplateData";
+  import TemplateCard from "./components/home/TemplateCard.svelte";
+  import type { Template } from "./types/Template";
 
   if (isAppRemote) {
     fetch(process.env.APP_ENDPOINT + "/auth", {
       headers: { Authorization: "Basic ________" },
     }).then((r) => r.json());
   }
-  const getData = async (): Promise<{ templates: TemplateData[] }> => {
+  const getData = async (): Promise<{ templates: Template[] }> => {
     if (isAppRemote) {
       return fetch(process.env.APP_ENDPOINT + "/templates").then((r) =>
         r.json()
       );
     }
+
+    return fetch("stubFormData.json").then((r) => r.json());
 
     return {
       templates: [
@@ -45,7 +48,7 @@
     {:then json}
       <CardContainer>
         {#each json.templates as t}
-          <Card data={t} />
+          <TemplateCard data={t} />
         {/each}
         <Card data={{ title: "", description: "Create a new template" }} />
       </CardContainer>

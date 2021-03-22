@@ -1,13 +1,19 @@
 {
   "APP_VERSION": 0,
   "templates": [
-    { "title": "0", "description": "---" },
-    { "title": "1", "description": "---" },
-    { "title": "2", "description": "---" },
-    { "title": "3", "description": "---" },
-    { "title": "4", "description": "---" },
-    { "title": "5", "description": "---" },
-    { "title": "6", "description": "---" },
-    { "title": "7", "description": "---" }
+    {
+      "title": "A",
+      "description": "B",
+      "data": "<div>ccc</div>",
+      "created": 1616389759416,
+      "modified": 1616389786746
+    },
+    {
+      "title": "D",
+      "description": "E",
+      "data": "<div>fff</div>",
+      "created": 1616389759416,
+      "modified": 1616389786746
+    }
   ]
 }
